@@ -31,6 +31,15 @@ services:
     ports:
       - "11211:11211"
     container_name: memcached
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_USER: postgres
+    ports:
+      - "5432:5432"
+    container_name: postgres
   agent:
     build:
       context: .
@@ -43,6 +52,8 @@ services:
       MYSQL_HOST: mysqldb
       REDIS_HOST: redisdb
       MEMCACHE_HOST: memcached
+      PG_HOST: postgres
+      PG_PORT: 5432
       PS1: "New Relic > "      
       NEWRELIC_COLLECTOR_HOST : ${NEWRELIC_COLLECTOR_HOST:-collector.newrelic.com}
       NEWRELIC_LICENSE_KEY: ${NEWRELIC_LICENSE_KEY}

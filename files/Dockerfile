@@ -44,6 +44,8 @@ RUN apt-get update \
  zlib1g-dev libmcrypt-dev libmemcached-dev
 
 RUN pecl install memcached && docker-php-ext-enable memcached
+RUN apt-get install -y libpq-dev
+RUN docker-php-ext-install pgsql
 #
 # Other tools
 #

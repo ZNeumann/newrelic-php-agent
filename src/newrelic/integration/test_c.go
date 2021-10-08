@@ -68,7 +68,7 @@ type CCLI struct {
 
 func CTx(src Script, env, settings map[string]string, headers http.Header, ctx *Context) (Tx, error) {
 	env["NEW_RELIC_DAEMON_SOCKET"] = strings.Trim(settings["newrelic.daemon.port"], "\"")
-	env["NEW_RELIC_LICENSE_KEY"] = settings["newrelic.license"]
+	env["NEWRELIC_LICENSE_KEY"] = settings["newrelic.license"]
 
 	path := src.Name()
 	base, _ := splitExt(path)

@@ -147,7 +147,7 @@ func (app *StressorApp) Populate(index int) error {
 		info.Hostname, _ = sysinfo.Hostname()
 	}
 
-	if userLicense := os.Getenv("NEW_RELIC_LICENSE_KEY"); userLicense != "" {
+	if userLicense := os.Getenv("NEWRELIC_LICENSE_KEY"); userLicense != "" {
 		info.License = collector.LicenseKey(userLicense)
 	}
 	if userCollector := os.Getenv("NEW_RELIC_HOST"); userCollector != "" {

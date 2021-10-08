@@ -41,8 +41,9 @@ RUN apt-get update \
  && apt-get -y install gcc git netcat \
  libpcre3 libpcre3-dev golang psmisc automake libtool \
  insserv procps vim ${PHP_USER_SPECIFIED_PACKAGES} \
- zlib1g-dev libmcrypt-dev
+ zlib1g-dev libmcrypt-dev libmemcached-dev
 
+RUN pecl install memcached && docker-php-ext-enable memcached
 #
 # Other tools
 #

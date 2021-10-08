@@ -25,6 +25,12 @@ services:
     ports:
       - "6379:6379"
     container_name: redisdb
+  memcached:
+    image: memcached
+    restart: always
+    ports:
+      - "11211:11211"
+    container_name: memcached
   agent:
     build:
       context: .
@@ -36,6 +42,7 @@ services:
       MYSQL_PASSWD: admin
       MYSQL_HOST: mysqldb
       REDIS_HOST: redisdb
+      MEMCACHE_HOST: memcached
       PS1: "New Relic > "      
       NEWRELIC_COLLECTOR_HOST : ${NEWRELIC_COLLECTOR_HOST:-collector.newrelic.com}
       NEWRELIC_LICENSE_KEY: ${NEWRELIC_LICENSE_KEY}

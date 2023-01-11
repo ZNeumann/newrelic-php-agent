@@ -72,7 +72,7 @@ jobs:
           # iam-role-name: my-role-name  # optional, requires additional permissions
           aws-resource-tags: > # optional, requires additional permissions
             [
-              {"Key": "Name", "Value": "kentonshade"},
+              {"Key": "Name", "Value": "zachneumann"},
               {"Key": "owning_team", "Value": "PHPC"},
               {"Key": "environment", "Value": "development"},
               {"Key": "product", "Value": "agents"},

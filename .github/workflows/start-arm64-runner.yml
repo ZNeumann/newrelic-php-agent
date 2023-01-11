@@ -11,10 +11,10 @@ name: 'Start arm64 Runner'
 #
 on:
   # GHA only using this for testing
-  # push:
-  #   branches:
+   push:
+     branches:
   #     # - gha-testing
-  #     - gha-dev
+       - zjn/aws_runner
   #     - dev
   #     - main
   #

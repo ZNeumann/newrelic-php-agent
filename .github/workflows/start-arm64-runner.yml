@@ -2,9 +2,9 @@
 # Testing Staring the arm64 runner
 #
 
-#---
+#- - -
 
-name: Start arm64 Runner
+name: 'Start arm64 Runner'
 
 #
 # Control when the action will run.

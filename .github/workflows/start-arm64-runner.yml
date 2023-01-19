@@ -62,7 +62,7 @@ jobs:
         uses: machulav/ec2-github-runner@v2
         with:
           mode: start
-          github-token: ${{ secrets.ACTIONS_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           # ec2-image-id: ${{ secrets.AWS_AMI_ID }}
           ec2-image-id: ami-0bccdbaa964f59624
           ec2-instance-type: ${{ secrets.AWS_INSTANCE_TYPE }}

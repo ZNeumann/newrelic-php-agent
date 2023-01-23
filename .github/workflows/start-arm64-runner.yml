@@ -16,7 +16,7 @@ on:
   #     # - gha-testing
       - zjn/aws_runner
   #     - dev
-  #     - main
+      - main
   #
   # Run this workflow manually from the Actions tab or using the API
   #

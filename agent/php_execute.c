@@ -1966,9 +1966,22 @@ static void nr_php_observer_attempt_call_cufa_handler(NR_EXECUTE_PROTO) {
    * cause additional performance overhead, this should be considered a last
    * resort.
    */
-  const zend_op* prev_opline = execute_data->prev_execute_data->opline - 1;
+
+  /*
+   * Using OAPI, some previous assumptions are no longer safe. Previously, we
+   * were overwritting ZEND_DO_FCALL, and therefore were guarenteed that, by
+   * definition, that the current opline was ZEND_DO_FCALL. This allowed us
+   * to look back in the upline, due to the safety of ZEND_INIT_FCALL described
+   * above. With OAPI, we are not actually guarenteed that the last opcode of
+   * the prev_execute_data is ZEND_DO_FCALL. So we need to check it here.
+   */
+  const zend_op* prev_opline = execute_data->prev_execute_data->opline;
+  if (ZEND_DO_FCALL != prev_opline->opcode) {
+      return;
+  }
+  prev_opline -= 1;
   if (ZEND_CHECK_UNDEF_ARGS == prev_opline->opcode) {
-    prev_opline = execute_data->prev_execute_data->opline - 2;
+    prev_opline -= 1;
   }
   if (ZEND_SEND_ARRAY == prev_opline->opcode) {
     if (UNEXPECTED((NULL == execute_data->func))) {

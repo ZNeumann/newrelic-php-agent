@@ -451,7 +451,7 @@ void nr_aws_lambda_invoke(NR_EXECUTE_PROTO, nr_segment_cloud_attrs_t* cloud_attr
   }
   if (nr_strempty(region)) {
     region_zval
-      = nr_php_get_zval_object_property(this_obj, "region");
+      = nr_php_call(this_obj, "getRegion");
     if (nr_php_is_zval_valid_string(region_zval)) {
       region = Z_STRVAL_P(region_zval);
     }

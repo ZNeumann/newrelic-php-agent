@@ -322,10 +322,12 @@ void nr_lib_aws_sdk_php_lambda_handle(nr_segment_t* auto_segment,
     return;
   }
 
+  printf("TEST 1\n");
   if (NULL == *retval_ptr) {
     /* Do not instrument when an exception has happened */
     return;
   }
+  printf("TEST 2\n");
 
 #define AWS_COMMAND_IS(CMD) \
   (command_name_len == (sizeof(CMD) - 1) && nr_streq(CMD, command_name_string))

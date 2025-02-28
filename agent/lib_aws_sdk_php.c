@@ -308,7 +308,7 @@ void nr_lib_aws_sdk_php_lambda_handle(nr_segment_t* auto_segment,
                                       NR_EXECUTE_PROTO) {
   nr_segment_t* external_segment = NULL;
   zval** retval_ptr = NR_GET_RETURN_VALUE_PTR;
-  printf("HERE\n");
+  printf("HERE 1\n");
 
   nr_segment_cloud_attrs_t cloud_attrs = {
       .cloud_platform = "aws_lambda"
@@ -339,9 +339,11 @@ void nr_lib_aws_sdk_php_lambda_handle(nr_segment_t* auto_segment,
   }
 #undef AWS_COMMAND_IS
 
+  printf("HERE 2\n");
   /* reconstruct the ARN */
   nr_aws_lambda_invoke(NR_EXECUTE_ORIG_ARGS, &cloud_attrs);
 
+  printf("HERE 3\n");
   /*
    * By this point, it's been determined that this call will be instrumented so
    * only create the segment now, grab the parent segment start time, add our
@@ -405,6 +407,7 @@ void nr_aws_lambda_invoke(NR_EXECUTE_PROTO, nr_segment_cloud_attrs_t* cloud_attr
   bool using_account_id_ini = false;
 
   /* verify arguments */
+  printf(" 1\n");
   if (!nr_php_is_zval_valid_array(call_args)) {
     return;
   }
@@ -416,6 +419,7 @@ void nr_aws_lambda_invoke(NR_EXECUTE_PROTO, nr_segment_cloud_attrs_t* cloud_attr
   if (!nr_php_is_zval_valid_string(lambda_name)) {
     return;
   }
+  printf(" 2\n");
 
   /* Ensure regex exists */
   if (NULL == aws_arn_regex) {
@@ -432,6 +436,7 @@ void nr_aws_lambda_invoke(NR_EXECUTE_PROTO, nr_segment_cloud_attrs_t* cloud_attr
   region = nr_regex_substrings_get_named(matches, "region");
   qualifier = nr_regex_substrings_get_named(matches, "qualifier");
 
+  printf(" 3\n");
   /* suppliment missing information with API calls */
   if (nr_strempty(function_name)) {
     /*
@@ -457,6 +462,7 @@ void nr_aws_lambda_invoke(NR_EXECUTE_PROTO, nr_segment_cloud_attrs_t* cloud_attr
       region = Z_STRVAL_P(region_zval);
     }
   }
+  printf(" 4\n");
 
   if (!nr_strempty(accountID) && !nr_strempty(region)) {
     // construct the ARN

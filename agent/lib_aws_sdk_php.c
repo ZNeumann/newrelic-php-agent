@@ -308,6 +308,7 @@ void nr_lib_aws_sdk_php_lambda_handle(nr_segment_t* auto_segment,
                                       NR_EXECUTE_PROTO) {
   nr_segment_t* external_segment = NULL;
   zval** retval_ptr = NR_GET_RETURN_VALUE_PTR;
+  printf("HERE\n");
 
   nr_segment_cloud_attrs_t cloud_attrs = {
       .cloud_platform = "aws_lambda"

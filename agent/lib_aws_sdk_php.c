@@ -449,14 +449,14 @@ void nr_aws_lambda_invoke(NR_EXECUTE_PROTO, nr_segment_cloud_attrs_t* cloud_attr
     accountID = NRINI(aws_account_id);
     using_account_id_ini = true;
   }
-    printf("HERE 0\n");
+    nrl_warning("HERE 0\n");
   if (nr_strempty(region)) {
     region_zval
       = nr_php_call(this_obj, "getRegion");
-    printf("HERE 1\n");
+    nrl_warning("HERE 1\n");
     if (nr_php_is_zval_valid_string(region_zval)) {
       region = Z_STRVAL_P(region_zval);
-    printf("HERE 2: %s\n", region);
+    nrl_warning("HERE 2: %s\n", region);
     }
   }
 
